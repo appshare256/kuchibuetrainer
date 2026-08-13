@@ -75,13 +75,47 @@
               ◀
             </button>
             <select id="tempoRate" class="bg-slate-900 border border-slate-600 text-slate-200 rounded text-xs px-2 py-1 focus:outline-none">
-              <option value="4.0">0.25x (超ゆっくり)</option>
-              <option value="2.0">0.5x (ゆっくり)</option>
-              <option value="1.5">0.75x</option>
-              <option value="1.0" selected>1.0x (標準)</option>
-              <option value="0.75">1.3x</option>
-              <option value="0.5">2.0x (速め)</option>
-              <option value="0.25">4.0x (超速め)</option>
+              <option value="4">0.25x</option>
+              <option value="3.636364">0.275x</option>
+              <option value="3.333333">0.3x</option>
+              <option value="3.076923">0.325x</option>
+              <option value="2.857143">0.35x</option>
+              <option value="2.666667">0.375x</option>
+              <option value="2.5">0.4x</option>
+              <option value="2.352941">0.425x</option>
+              <option value="2.222222">0.45x</option>
+              <option value="2.105263">0.475x</option>
+              <option value="2">0.5x</option>
+              <option value="1.818182">0.55x</option>
+              <option value="1.666667">0.6x</option>
+              <option value="1.538462">0.65x</option>
+              <option value="1.428571">0.7x</option>
+              <option value="1.333333">0.75x</option>
+              <option value="1.25">0.8x</option>
+              <option value="1.176471">0.85x</option>
+              <option value="1.111111">0.9x</option>
+              <option value="1.052632">0.95x</option>
+              <option value="1" selected>1x</option>
+              <option value="0.909091">1.1x</option>
+              <option value="0.833333">1.2x</option>
+              <option value="0.769231">1.3x</option>
+              <option value="0.714286">1.4x</option>
+              <option value="0.666667">1.5x</option>
+              <option value="0.625">1.6x</option>
+              <option value="0.588235">1.7x</option>
+              <option value="0.555556">1.8x</option>
+              <option value="0.526316">1.9x</option>
+              <option value="0.5">2x</option>
+              <option value="0.454545">2.2x</option>
+              <option value="0.416667">2.4x</option>
+              <option value="0.384615">2.6x</option>
+              <option value="0.357143">2.8x</option>
+              <option value="0.333333">3x</option>
+              <option value="0.3125">3.2x</option>
+              <option value="0.294118">3.4x</option>
+              <option value="0.277778">3.6x</option>
+              <option value="0.263158">3.8x</option>
+              <option value="0.25">4x</option>
             </select>
             <button id="tempoFasterBtn" class="bg-slate-700 hover:bg-slate-600 active:bg-slate-500 text-amber-400 px-2 py-1 rounded text-xs font-bold shadow" title="速度を速くする">
               ▶
@@ -94,24 +128,37 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <!-- 主音（調）選択 -->
         <div>
-          <label class="block text-[11px] text-slate-400 mb-1">主音 (Key)</label>
+          <label class="block text-[11px] text-slate-400 mb-1">移調 (Transpose)</label>
           <div class="flex items-center space-x-1">
             <button id="keyDownBtn" class="bg-slate-700 hover:bg-slate-600 active:bg-slate-500 text-amber-400 px-2.5 py-1.5 rounded text-xs font-bold shadow" title="音高を下げる">
               ▼
             </button>
             <select id="rootKeySelect" class="flex-1 bg-slate-900 border border-slate-600 text-amber-300 font-mono text-xs rounded px-2 py-1.5 focus:outline-none">
-              <option value="0" selected>C</option>
-              <option value="1">C# / Db</option>
-              <option value="2">D</option>
-              <option value="3">D# / Eb</option>
-              <option value="4">E</option>
-              <option value="5">F</option>
-              <option value="6">F# / Gb</option>
-              <option value="7">G</option>
-              <option value="8">G# / Ab</option>
-              <option value="9">A</option>
-              <option value="10">A# / Bb</option>
-              <option value="11">B</option>
+              <option value="-12">C (-12)</option>
+              <option value="-11">C# (-11)</option>
+              <option value="-10">D (-10)</option>
+              <option value="-9">D# (-9)</option>
+              <option value="-8">E (-8)</option>
+              <option value="-7">F (-7)</option>
+              <option value="-6">F# (-6)</option>
+              <option value="-5">G (-5)</option>
+              <option value="-4">G# (-4)</option>
+              <option value="-3">A (-3)</option>
+              <option value="-2">A# (-2)</option>
+              <option value="-1">B (-1)</option>
+              <option value="0" selected>C (±0)</option>
+              <option value="1">C# (+1)</option>
+              <option value="2">D (+2)</option>
+              <option value="3">D# (+3)</option>
+              <option value="4">E (+4)</option>
+              <option value="5">F (+5)</option>
+              <option value="6">F# (+6)</option>
+              <option value="7">G (+7)</option>
+              <option value="8">G# (+8)</option>
+              <option value="9">A (+9)</option>
+              <option value="10">A# (+10)</option>
+              <option value="11">B (+11)</option>
+              <option value="12">C (+12)</option>
             </select>
             <button id="keyUpBtn" class="bg-slate-700 hover:bg-slate-600 active:bg-slate-500 text-amber-400 px-2.5 py-1.5 rounded text-xs font-bold shadow" title="音高を上げる">
               ▲
@@ -694,15 +741,8 @@
       stopAllSequences();
       initAudioEngine();
 
-      const rootSelect = document.getElementById('rootKeySelect');
       const patternSelect = document.getElementById('patternPresetSelect');
-      const tempoSelect = document.getElementById('tempoRate');
-      const loopCheck = document.getElementById('presetLoopCheck');
-
-      const rootShift = rootSelect ? (parseInt(rootSelect.value) || 0) : 0;
       const presetKey = patternSelect ? patternSelect.value : 'major_scale';
-      const tempoMultiplier = tempoSelect ? (parseFloat(tempoSelect.value) || 1.0) : 1.0;
-      const isLoop = loopCheck ? loopCheck.checked : false;
       const rawPattern = rawPresets[presetKey];
 
       if (!rawPattern || rawPattern.length === 0) return;
@@ -724,6 +764,15 @@
 
       function playNextStep() {
         if (!isPresetPlaying) return;
+
+        // 速度・移調・ループ設定はここで毎回最新の値を読み込む（矢印連打やプルダウン変更が
+        // 次の音符の頭出しタイミングにだけ反映され、音符を早送りしてしまうのを防ぐため）
+        const rootSelect = document.getElementById('rootKeySelect');
+        const tempoSelect = document.getElementById('tempoRate');
+        const loopCheck = document.getElementById('presetLoopCheck');
+        const rootShift = rootSelect ? (parseInt(rootSelect.value) || 0) : 0;
+        const tempoMultiplier = tempoSelect ? (parseFloat(tempoSelect.value) || 1.0) : 1.0;
+        const isLoop = loopCheck ? loopCheck.checked : false;
 
         // ABリピート判定
         const effectiveEnd = (isABRepeatEnabled && pointB !== null && pointB < rawPattern.length && pointB >= (pointA || 0)) 
@@ -793,6 +842,42 @@
     function stopAllSequences() {
       if (isPresetPlaying) stopPresetSequence();
       if (isLoopPlaying) stopLoop();
+    }
+
+    // 移調変更時、演奏中のシーケンスを先送りせず「今鳴っている音」だけを
+    // 新しい移調値でその場で鳴らし直す（速度は playNextStep 側で毎回最新値を読むので触らない）
+    function updateCurrentNotePitchLive() {
+      if (!isPresetPlaying) return;
+
+      const patternSelect = document.getElementById('patternPresetSelect');
+      const presetKey = patternSelect ? patternSelect.value : 'major_scale';
+      const rawPattern = rawPresets[presetKey];
+      if (!rawPattern) return;
+
+      // currentPresetStep は直前に鳴らした音符の次を指しているため、-1 が「今鳴っている音符」
+      const stepIndex = currentPresetStep - 1;
+      if (stepIndex < 0 || stepIndex >= rawPattern.length) return;
+      const item = rawPattern[stepIndex];
+      if (!item) return;
+
+      const rootSelect = document.getElementById('rootKeySelect');
+      const rootShift = rootSelect ? (parseInt(rootSelect.value) || 0) : 0;
+
+      let freq = 0;
+      if (!item.isRest && item.rel !== undefined && item.rel !== null) {
+        const totalSemitoneOffset = item.rel + rootShift - 9;
+        freq = calculateFrequency(totalSemitoneOffset, 6);
+      }
+
+      setAudioOutput(freq);
+
+      document.querySelectorAll('.key-element').forEach(el => {
+        if (freq > 0 && Math.abs(parseFloat(el.dataset.freq) - freq) < 0.05) {
+          el.classList.add('active-key');
+        } else {
+          el.classList.remove('active-key');
+        }
+      });
     }
 
     function safeAddListener(id, event, handler) {
@@ -971,26 +1056,27 @@
       const rootSelect = document.getElementById('rootKeySelect');
       if (!rootSelect) return;
       let val = parseInt(rootSelect.value);
-      if (val === 11) {
-        val = 0;
-      } else {
+      if (val < 12) {
         val++;
+        rootSelect.value = val;
+        updateCurrentNotePitchLive();
       }
-      rootSelect.value = val;
-      if (isPresetPlaying) playPresetSequence();
     });
 
     safeAddListener('keyDownBtn', 'click', () => {
       const rootSelect = document.getElementById('rootKeySelect');
       if (!rootSelect) return;
       let val = parseInt(rootSelect.value);
-      if (val === 0) {
-        val = 11;
-      } else {
+      if (val > -12) {
         val--;
+        rootSelect.value = val;
+        updateCurrentNotePitchLive();
       }
-      rootSelect.value = val;
-      if (isPresetPlaying) playPresetSequence();
+    });
+
+    // 移調プルダウン直接選択
+    safeAddListener('rootKeySelect', 'change', () => {
+      updateCurrentNotePitchLive();
     });
 
     // フレーズ（Pattern）矢印ボタン
@@ -1021,21 +1107,15 @@
     // 速度（Tempo）矢印ボタン
     safeAddListener('tempoSlowerBtn', 'click', () => {
       const tempoSelect = document.getElementById('tempoRate');
-      if (tempoSelect && tempoSelect.options.length > 0) {
-        if (tempoSelect.selectedIndex > 0) {
-          tempoSelect.selectedIndex--;
-        }
-        if (isPresetPlaying) playPresetSequence();
+      if (tempoSelect && tempoSelect.options.length > 0 && tempoSelect.selectedIndex > 0) {
+        tempoSelect.selectedIndex--;
       }
     });
 
     safeAddListener('tempoFasterBtn', 'click', () => {
       const tempoSelect = document.getElementById('tempoRate');
-      if (tempoSelect && tempoSelect.options.length > 0) {
-        if (tempoSelect.selectedIndex < tempoSelect.options.length - 1) {
-          tempoSelect.selectedIndex++;
-        }
-        if (isPresetPlaying) playPresetSequence();
+      if (tempoSelect && tempoSelect.options.length > 0 && tempoSelect.selectedIndex < tempoSelect.options.length - 1) {
+        tempoSelect.selectedIndex++;
       }
     });
 
