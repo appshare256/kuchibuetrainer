@@ -178,18 +178,18 @@
               <option value="minor_scale_nat">自然短音階</option>
               <option value="minor_scale_harm">和声短音階</option>
               <option value="minor_scale_melo">旋律短音階</option>
-              <option value="scale_8th_major">長調８分音符の音階</option>
-              <option value="scale_8th_minor">短調８分音符の音階</option>
-              <option value="scale_16th_major">長調１６分音符の音階</option>
-              <option value="scale_16th_minor">短調１６分音符の音階</option>
+              <option value="scale_8th_major">９度の音階 長調</option>
+              <option value="scale_8th_minor">９度の音階 短調</option>
+              <option value="triplet_major">３度の音階 長調</option>
+              <option value="triplet_minor">３度の音階 短調</option>
+              <option value="scale_16th_major">４度の音階 長調</option>
+              <option value="scale_16th_minor">４度の音階 短調</option>
               <option value="interval_3rd">3度インターバル</option>
               <option value="interval_3rd_minor">短3度インターバル</option>
               <option value="interval_4th">4度インターバル</option>
               <option value="interval_5th">5度インターバル</option>
               <option value="leap_major">長調跳躍音階</option>
               <option value="leap_minor">短調跳躍音階</option>
-              <option value="triplet_major">3連符長調</option>
-              <option value="triplet_minor">3連符短調</option>
               <option value="arpeggio_major_1">基本アルペジオ 長調1</option>
               <option value="arpeggio_major_2">基本アルペジオ 長調2</option>
               <option value="arpeggio_minor_1">基本アルペジオ 短調1</option>
@@ -540,12 +540,12 @@
       interval_3rd_minor: parseScoreString(interval3rdMinorScoreRaw),
       leap_major: parseScoreString(leapMajorScoreRaw),
       leap_minor: parseScoreString(leapMinorScoreRaw),
-      triplet_major: parseScoreString(tripletMajorScoreRaw),
-      triplet_minor: parseScoreString(tripletMinorScoreRaw),
-      scale_8th_major: parseScoreString(scale8thMajorScoreRaw),
-      scale_8th_minor: parseScoreString(scale8thMinorScoreRaw),
-      scale_16th_major: parseScoreString(scale16thMajorScoreRaw),
-      scale_16th_minor: parseScoreString(scale16thMinorScoreRaw),
+      triplet_major: parseScoreString(tripletMajorScoreRaw).map(item => ({ ...item, dur: item.dur * 3 })),
+      triplet_minor: parseScoreString(tripletMinorScoreRaw).map(item => ({ ...item, dur: item.dur * 3 })),
+      scale_8th_major: parseScoreString(scale8thMajorScoreRaw).map(item => ({ ...item, dur: item.dur > 400 ? item.dur : item.dur * 2 })),
+      scale_8th_minor: parseScoreString(scale8thMinorScoreRaw).map(item => ({ ...item, dur: item.dur > 400 ? item.dur : item.dur * 2 })),
+      scale_16th_major: parseScoreString(scale16thMajorScoreRaw).map(item => ({ ...item, dur: item.dur * 4 })),
+      scale_16th_minor: parseScoreString(scale16thMinorScoreRaw).map(item => ({ ...item, dur: item.dur * 4 })),
       arpeggio_major_1: [
         { rel: 0, dur: 400 }, { rel: 4, dur: 400 }, { rel: 7, dur: 400 }, { rel: 12, dur: 400 },
         { rel: 7, dur: 400 }, { rel: 4, dur: 400 }, { rel: 0, dur: 800 },
